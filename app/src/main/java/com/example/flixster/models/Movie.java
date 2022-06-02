@@ -33,7 +33,7 @@ public class Movie {
 
     // TODO: fetch all sizes and append them to the base url plus the relative path
     public String getPosterPath(){
-        return posterPath;
+        return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
     }
     public String getTitle(){
         return title;

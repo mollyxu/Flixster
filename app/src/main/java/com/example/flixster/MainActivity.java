@@ -44,7 +44,6 @@ import okhttp3.Headers;
                     Log.e(TAG, "Hit json Exception", e);
                 }
 
-
             }
 
             @Override
