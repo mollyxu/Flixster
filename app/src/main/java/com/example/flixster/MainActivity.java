@@ -1,18 +1,23 @@
  package com.example.flixster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.flixster.adapters.MovieAdapter;
 import com.example.flixster.models.Movie;
+import com.facebook.stetho.common.ArrayListAccumulator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Headers;
@@ -27,7 +32,17 @@ import okhttp3.Headers;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // test
+         RecyclerView rvMovies = findViewById(R.id.rvMovies);
+         movies = new ArrayList<>();
+
+        // Create the adapter
+        MovieAdapter movieAdapter = new MovieAdapter(this, movies);
+
+         // Set the adapter of the recycler view
+         rvMovies.setAdapter(movieAdapter);
+
+         // Set a Layout Manager (how to layout the different views onto the screen)
+         rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
@@ -38,7 +53,8 @@ import okhttp3.Headers;
                 try {
                     JSONArray results = jsonObject.getJSONArray("results");
                     Log.i(TAG, "Results: " + results.toString());
-                    movies = Movie.fromJsonArray(results);
+                    movies.addAll(Movie.fromJsonArray(results));
+                    movieAdapter.notifyDataSetChanged();
                     Log.i(TAG, "Movies " + movies.size());
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json Exception", e);
