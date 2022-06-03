@@ -70,18 +70,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
 
-
         }
 
         public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
-//            Glide.with(context)
-//                    .load("http://via.placeholder.com/300.png")
-//                    .placeholder(R.drawable.placeholder)
-//                    .error(R.drawable.imagenotfound)
-//                    .into(ivPoster);
+
             String imageUrl;
+
             // if phone is in landscape
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 imageUrl = movie.getBackdropPath();
@@ -90,7 +86,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 imageUrl = movie.getPosterPath();
             }
 
-            Glide.with(context).load(imageUrl).into(ivPoster);
+//            Glide.with(context).load(imageUrl).into(ivPoster);
+            Glide.with(context)
+                    .load(imageUrl)
+                    .placeholder(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ? R.drawable.flicks_backdrop_placeholder : R.drawable.flicks_movie_placeholder)
+                    .into(ivPoster);
         }
     }
 }

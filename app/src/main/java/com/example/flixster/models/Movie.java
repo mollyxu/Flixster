@@ -3,16 +3,23 @@ package com.example.flixster.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+//@Parcel
 public class Movie {
 
+    // public fields
     String backdropPath;
     String posterPath;
     String title;
     String overview;
+
+//    // empty constructor
+//    public Movie() {}
 
     // Movie Class Constructor
     public Movie(JSONObject jsonObject) throws JSONException {
@@ -32,13 +39,11 @@ public class Movie {
     }
 
     // getters
-
-    // TODO: fetch all sizes and append them to the base url plus the relative path
     public String getPosterPath(){
         return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
     }
     public String getBackdropPath(){
-        return String.format("https://image.tmdb.org/t/p/w342gfiuenivknrrchvndhnnduklfculhuhc/%s", backdropPath);
+        return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
     }
     public String getTitle(){
         return title;
