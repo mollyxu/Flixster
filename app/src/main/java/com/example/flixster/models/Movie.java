@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//@Parcel
+@Parcel
 public class Movie {
 
     // public fields
@@ -17,9 +17,10 @@ public class Movie {
     String posterPath;
     String title;
     String overview;
+    Double voteAverage;
 
-//    // empty constructor
-//    public Movie() {}
+    // default constructor
+    public Movie() {}
 
     // Movie Class Constructor
     public Movie(JSONObject jsonObject) throws JSONException {
@@ -27,6 +28,7 @@ public class Movie {
         posterPath = jsonObject.getString("poster_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
+        voteAverage = jsonObject.getDouble("vote_average");
     }
 
     // add movies to an array of movies from the json array
@@ -52,4 +54,7 @@ public class Movie {
         return overview;
     }
 
+    public Double getVoteAverage() {
+        return voteAverage;
+    }
 }

@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/placeholder.xml" value="0.144" />
         <entry key="app/src/main/res/layout-land/item_movie.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15925925925925927" />
+        <entry key="app/src/main/res/layout/activity_movie_details.xml" value="0.31421117193189196" />
         <entry key="app/src/main/res/layout/item_movie.xml" value="0.26744384765625" />
       </map>
     </option>
